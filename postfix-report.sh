@@ -26,7 +26,8 @@ postfix_info=/tmp/mailer.txt
 chart=$'\U1F4CA'
 email=$'\U1F4E8'
 
-bash /usr/sbin/pflogsumm -d today /var/log/mail.log > /tmp/mailer.txt
+cat /var/log/mail.log | /usr/sbin/pflogsumm -d today > /tmp/mailer.txt 
+
 #Telegram API to send notification.
 function telegram_send
 {
