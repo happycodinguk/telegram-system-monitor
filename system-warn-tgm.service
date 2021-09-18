@@ -1,0 +1,13 @@
+
+[Unit]
+Description=system warnings telegram
+
+[Service]
+Type=simple
+WorkingDirectory="YOUR_INSTALL_DIR"
+ExecStart="YOUR_INSTALL_DIR"/system-warnings.sh
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

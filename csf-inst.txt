@@ -1,0 +1,30 @@
+
+# Inserts chosen install directory into sytemd service
+sed -i 's|"YOUR_INSTALL_DIR"|'"$inspath"'|g' csf-lfd-alert.service
+
+### Move downloaded files to your chosen directory ##################
+mv -i csf-lfd-notifications.sh /$inspath
+
+### Move Systemd files into system folder ##########################
+mv -i csf-lfd-alert.service /etc/systemd/system/
+
+
+
+### Setting file permissions ########################################
+chmod 700 /$inspath/csf-lfd-notifications.sh
+chmod 644 /etc/systemd/system/csf-lfd-alert.service
+
+# Setting Up SYSTEMD Job for hard disk alarm!
+
+systemctl enable csf-lfd-alert.service
+
+# Reload systemd
+
+systemctl daemon-reload
+
+systemctl start csf-lfd-alert.service
+
+
+# Status
+
+systemctl status --no-pager csf-lfd-alert.service

@@ -1,0 +1,102 @@
+
+read -e -p "
+########################################
+##### Low Storage Alert Installer  #####
+########################################
+
+What percentage would you like to receive a LOW DISK Alert?
+DEFAULT 90
+
+What percentage?:" hd_warning_percent
+: ${hd_warning_percent:=90}
+echo "
+
+Great Choice: $hd_warning_percent%"
+
+read -e -p "
+**************************************************************
+
+What volume would you like HD Low alert for? 
+
+To find your /dev/ storage (mine is /dev/sda):
+
+In terminal type:
+
+    lsblk -l
+
+Enter for DEFAULT VALUE /dev/sda
+
+You can re re-enter later in the installed script file:" hd_partition
+: ${hd_partition:=/dev/sda}
+echo "
+Thank You!
+
+I've stored: $hd_partition"
+
+read -e -p "
+**************************************************************
+
+STORAGE WARNING Poll Rate...
+
+This process will run from a SYSYTEMD Timer.
+How often would you like this to be checked?
+
+DEFAULT VALUE 6 hours.
+
+You can re re-enter later in the script storage-warning.sh
+
+How many hours?:" hd_poll_timing
+: ${hd_poll_timing:=6}
+echo "
+Thank You!
+
+I've stored: $hd_poll_timing hour/s
+
+#######################################
+#### Service install status below #####
+#######################################"
+
+# Inserts choice hd warning storage-warning.sh
+sed -i 's|"YOUR_HD_THRESHOLD"|'"$hd_warning_percent"'|g' storage-warning.sh
+sed -i 's|"YOUR_HD_LOCATION"|'"$hd_partition"'|g' storage-warning.sh
+
+# Insert your timings
+
+sed -i 's|"YOUR_RESET_TIMING"|'"$hd_reset_timing"'|g' storage-warning.sh 
+sed -i 's|"YOUR_POLL_TIME"|'"$hd_poll_timing"'|g' storage-warning.timer
+
+# Inserts chosen install directory into sytemd service
+sed -i 's|"YOUR_INSTALL_DIR"|'"$inspath"'|g' storage-warn-tgm.service
+sed -i 's|"YOUR_INSTALL_DIR"|'"$inspath"'|g' storage-warning.timer
+
+
+### Move downloaded files to your chosen directory ##################
+mv -i storage-warning.sh /$inspath
+
+### Move Systemd files into system folder ##########################
+mv -i storage-warn-tgm.service /etc/systemd/system/
+mv -i storage-warning.timer /etc/systemd/system/
+
+### Setting file permissions ########################################
+chmod 700 /$inspath/storage-warning.sh
+chmod 644 /etc/systemd/system/storage-warn-tgm.service
+chmod 644 /etc/systemd/system/storage-warning.timer
+
+# Setting Up SYSTEMD Job for hard disk alarm!
+
+systemctl enable storage-warn-tgm.service
+systemctl enable storage-warning.timer
+
+# Reload systemd
+
+systemctl daemon-reload
+
+systemctl start storage-warn-tgm.service
+systemctl start storage-warning.timer
+
+
+# Status
+
+systemctl status --no-pager storage-warning.timer
+
+

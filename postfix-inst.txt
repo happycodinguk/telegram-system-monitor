@@ -1,0 +1,101 @@
+# This installer was written by https://github.com/happycodinguk
+# Scripts compliled and edited for your server and telegram pleasure. 
+# Am looking forward to its modification and improvement from the Open Source Community!
+# Please leave feedback or message me on telegram https://t.me/joinchat/xlmtm7jVYR4yODQ0
+
+read -p "
+########################################
+###### Postfix report installer! #######
+########################################
+
+For POSTFIX activity reports 
+>>You must install pflogsumm for this to work<<
+
+You can do this by opening a second terminal window and entering:
+
+    apt -y install pflogsumm
+or
+    yum -y install postfix-perl-scripts 
+    
+Enter what time of the day you would like to receive your FIRST postfix report of the day.
+
+You can re re-enter later in /etc/systemd/system/postfix-report.timer
+There you can add extra times or delete the second timer.
+You must run     systemctl daemon-reload    after changing systemd files
+Or just un-install and re-install!
+
+Enter for DEFAULT 14:00:00
+Must be in the 24hr format with seconds:" report_1_time
+: ${report_1_time:=14:00:00}
+echo "
+Thank You!
+
+I've stored: $report_1_time"
+
+read -e -p "
+**************************************************************
+
+POSTFIX Report 2.
+
+Please enter what time of the day you would like to receive your SECOND postfix report of the day? 
+
+Enter for DEFAULT 23:59:00
+Must be in the 24hr format with seconds:" report_2_time
+: ${report_2_time:=23:59:00}
+echo "
+Thank You!
+
+I've stored: $report_2_time
+
+#######################################
+#### Service install status below #####
+#######################################"
+
+
+# This script will install a hard drive monitor that warns of low 
+# space and then send you a message via telegram messenger
+# It will also install a script to monitor system services.
+# Also a CPU and Memory Monitor.
+
+# to find your list of services run $ systemctl list-units --type=service
+# select the service names you want to watch (minus the .service)
+
+#####################################################################
+# Dont Edit below here !!!!!!!!! But please do read the information #
+#####################################################################
+
+# Inserts install choices into files!
+
+sed -i 's|"REPORT_1_TIME"|'"$report_1_time"'|g' postfix-report.timer
+sed -i 's|"REPORT_2_TIME"|'"$report_2_time"'|g' postfix-report.timer
+
+# Inserts chosen install directory into sytemd service
+sed -i 's|"YOUR_INSTALL_DIR"|'"$inspath"'|g' postfix-report.service
+
+
+### Move downloaded files to your chosen directory ##################
+mv -i postfix-report.sh /$inspath
+
+### Move Systemd files into system folder ##########################
+mv -i postfix-report.timer /etc/systemd/system/
+mv -i postfix-report.service /etc/systemd/system/
+
+
+### Setting file permissions ########################################
+chmod 700 /$inspath/postfix-report.sh
+chmod 644 /etc/systemd/system/postfix-report.service
+chmod 644 /etc/systemd/system/postfix-report.timer
+
+# Setting Up SYSTEMD Job for Postfix reports.
+systemctl enable postfix-report.service
+systemctl enable postfix-report.timer
+
+# Reload systemd
+
+systemctl daemon-reload
+
+systemctl start postfix-report.service
+systemctl start postfix-report.timer
+
+systemctl status --no-pager postfix-report.timer
+

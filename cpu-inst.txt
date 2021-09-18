@@ -1,0 +1,72 @@
+read -e -p "
+########################################
+### CPU and Memory Alert Installer! ####
+########################################
+
+At what percentage would you like a memory alarm?
+
+DEFAULT: 95
+
+Percentage:" mem_threshold
+: ${mem_threshold:=95}
+echo "
+Thank You!
+
+I'll put that in for you: $mem_threshold%"
+
+read -e -p "
+**************************************************************
+
+After receiving alert message for CPU and MEMORY WARNING how long do you want to wait before receiving another memory alarm? 
+
+Enter your amount in seconds.
+
+DEFAULT 600 (600 is 10 mins)
+
+You can re re-enter later in the script monitor-CPU-Mem.sh
+
+How many seconds?:" cpu_reset_timing
+: ${cpu_reset_timing:=600}
+echo "
+Thank You!
+
+I've stored: $cpu_reset_timing seconds
+
+#######################################
+#### Service install status below #####
+#######################################"
+
+
+# Inserts install choices into files!
+
+# Inserts THRESHOLD into system-warnings-timer.sh
+sed -i 's|"YOUR_MEMORY_THRESHOLD"|'"$mem_threshold"'|g' monitor-CPU-Mem.sh
+
+sed -i 's|"YOUR_RESET_TIMING"|'"$cpu_reset_timing"'|g' monitor-CPU-Mem.sh 
+
+sed -i 's|"YOUR_INSTALL_DIR"|'"$inspath"'|g' cpu-mem-alert.service
+
+
+### Move downloaded files to your chosen directory ##################
+mv -i monitor-CPU-Mem.sh /$inspath
+
+
+### Move Systemd files into system folder ##########################
+mv -i cpu-mem-alert.service /etc/systemd/system/
+
+
+### Setting file permissions ########################################
+chmod 700 /$inspath/monitor-CPU-Mem.sh
+chmod 644 /etc/systemd/system/cpu-mem-alert.service
+
+# Setting Up SYSTEMD Job!
+
+systemctl enable cpu-mem-alert.service
+
+# Reload systemd
+
+systemctl daemon-reload
+
+systemctl start cpu-mem-alert.service
+
+systemctl status --no-pager cpu-mem-alert.service

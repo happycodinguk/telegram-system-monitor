@@ -1,0 +1,11 @@
+[Unit]
+Description=Postfix Reports Telegram
+
+[Service]
+Type=oneshot
+WorkingDirectory="YOUR_INSTALL_DIR"
+ExecStart="YOUR_INSTALL_DIR"/postfix-report.sh
+
+
+[Install]
+WantedBy=multi-user.target

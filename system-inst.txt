@@ -1,0 +1,78 @@
+read -e -p "
+########################################
+## System Service Failure Installer! ###
+########################################
+
+Which SYSTEMD services do you want to monitor (space separated)? 
+
+DEFAULT VALUES: 
+
+apache2 php7.3-fpm php7.4-fpm php8.0-fpm bind9 postfix dovecot mariadb proftpd spamassassin ssh
+
+Which do you want?:" services_to_monitor
+: ${services_to_monitor:=apache2 php7.3-fpm php7.4-fpm php8.0-fpm bind9 postfix dovecot mariadb proftpd spamassassin ssh}
+echo "
+Thank You!
+
+I've stored: $services_to_monitor 
+
+- This can be altered in the script files in your installation directory"
+
+read -e -p "
+**************************************************************
+
+After receiving alert message for SYSTEMD WARNING how long do you want to wait before receiving another systemd alarm? 
+
+Enter your amount in seconds.
+
+DEFAULT (600 is 5 mins)
+
+You can re re-enter later in the script stystem-warning.sh
+
+How many seconds?:" sys_reset_timing
+: ${sys_reset_timing:=600}
+echo "
+Thank You!
+
+I've stored: $sys_reset_timing seconds
+
+#######################################
+#### Service install status below #####
+#######################################"
+
+# Inserts install choices into files!
+
+# Inserts service choices into the monitor system-warnings.sh 
+sed -i 's|"SERVICES_TO_MONITOR"|'"$services_to_monitor"'|g' system-warnings.sh 
+
+# Insert your timings
+
+sed -i 's|"YOUR_RESET_TIMING"|'"$sys_reset_timing"'|g' system-warnings.sh 
+
+# Inserts chosen install directory into sytemd service
+sed -i 's|"YOUR_INSTALL_DIR"|'"$inspath"'|g' system-warn-tgm.service
+
+
+### Move downloaded files to your chosen directory ##################
+mv -i system-warnings.sh /$inspath
+
+### Move Systemd files into system folder ##########################
+mv -i system-warn-tgm.service /etc/systemd/system/
+
+
+### Setting file permissions ########################################
+chmod 700 /$inspath/system-warnings.sh 
+chmod 644 /etc/systemd/system/system-warn-tgm.service
+
+# Setting Up SYSTEMD Job for system alarms!
+
+systemctl enable system-warn-tgm.service
+
+# Reload systemd
+
+systemctl daemon-reload
+
+systemctl start system-warn-tgm.service
+
+systemctl status --no-pager system-warn-tgm.service
+

@@ -1,0 +1,11 @@
+[Unit]
+Description=Postfix Report Timer
+Requires=postfix-report.service
+
+[Timer]
+Unit=postfix-report.service
+OnCalendar="REPORT_1_TIME"
+OnCalendar="REPORT_2_TIME"
+
+[Install]
+WantedBy=timers.target

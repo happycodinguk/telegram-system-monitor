@@ -1,0 +1,11 @@
+
+[Unit]
+Description=Storage Warning Timer
+Requires=storage-warn-tgm.service
+
+[Timer]
+Unit=storage-warn-tgm.service
+OnUnitActiveSec="YOUR_POLL_TIME"h
+
+[Install]
+WantedBy=timers.target
