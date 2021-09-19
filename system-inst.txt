@@ -5,12 +5,25 @@ read -e -p "
 
 Which SYSTEMD services do you want to monitor (space separated)? 
 
-DEFAULT VALUES: 
+If you receive incorrect service failure messages...
+Check your service names are correct and those services are actually installed on your system!
+System service names vary on different OS's
+
+You can edit services later in: $inspath/system-warnings.sh 
+
+Samples services below by OS.
+
+Debian:
 
 apache2 php7.3-fpm php7.4-fpm php8.0-fpm bind9 postfix dovecot mariadb proftpd spamassassin ssh
 
-Which do you want?:" services_to_monitor
-: ${services_to_monitor:=apache2 php7.3-fpm php7.4-fpm php8.0-fpm bind9 postfix dovecot mariadb proftpd spamassassin ssh}
+CentOS:
+
+httpd named postfix dovecot mariadb proftpd spamassassin sshd
+
+
+Which do you want to monitor?:" services_to_monitor
+
 echo "
 Thank You!
 
@@ -25,7 +38,7 @@ After receiving alert message for SYSTEMD WARNING how long do you want to wait b
 
 Enter your amount in seconds.
 
-DEFAULT (600 is 5 mins)
+DEFAULT 600 (600 is 5 mins)
 
 You can re re-enter later in the script stystem-warning.sh
 
@@ -51,6 +64,7 @@ sed -i 's|"YOUR_RESET_TIMING"|'"$sys_reset_timing"'|g' system-warnings.sh
 
 # Inserts chosen install directory into sytemd service
 sed -i 's|"YOUR_INSTALL_DIR"|'"$inspath"'|g' system-warn-tgm.service
+sed -i 's|"YOUR_INSTALL_DIR"|'"$inspath"'|g' system-warnings.sh
 
 
 ### Move downloaded files to your chosen directory ##################
