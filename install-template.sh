@@ -45,8 +45,12 @@ sed -i 's|"YOUR_API_TOKEN_HERE"|'"$telegram_api"'|g' telegram.conf
 
 sed -i 's|"YOUR_CHAT_OR_CHANNEL_ID_HERE"|'"$chat_or_channel_id"'|g' telegram.conf 
 
-mv -i telegram.conf /$inspath
-chmod 700 /$inspath/telegram.conf
+mv -i telegram.conf $inspath
+chmod 700 $inspath/telegram.conf
+
+chmod +x uninstall.sh 
+
+mv -i uninstall.sh $inspath/uninstall.sh
 
 # "postfix"
 
@@ -66,11 +70,17 @@ read -p "
 #############################################################
 Summary
 #############################################################
+
 To completely un-install this setup please run:
-    bash $inspath/uninstall.sh
-You must run the un-install BEFORE running the install process again!
-That's the easy way to change your options.
-To manually edit scripts go to:
+
+     bash $inspath/uninstall.sh
+    
+>>>> You must run the un-install BEFORE running the install process again! <<<<
+
+That's the easy way to change your options
+
+To manually edit the scripts you chose on install go to:
+
     $inspath/storage-warning.sh
     /etc/systemd/system/storage-warning.timer
     
@@ -85,16 +95,18 @@ No editing required on CSF LFD Alerts file.
 
 You can manually edit your emoji codes inside these files to customise your message looks....
 To test CPU warning you will need to install stress (apt-get install stress).
+
 Then run: 
     stress --cpu 4
+    
 The "4" relates to the amount of cores in your processor, adjust accordingly.
 More info at https://www.tecmint.com/linux-cpu-load-stress-test-with-stress-ng-tool/
-At the end of installation I will open the system status of the installed scripts. They should all show a green running message!
+
 ENJOY!
 #############################################################
 # Summary notes above - Please read ^^^^^^^^^^^^^^^^^^^^^^^^#                        
 #############################################################
-Remove temporary files and see system status of the installed scripts?
+Remove temporary files?
 Yes or No?" -n 1 -r
 echo    # (optional) move to a new line
 if [[ ! $REPLY =~ ^[Yy]$ ]]
@@ -105,13 +117,3 @@ fi
 # Delete install files
 
 rm -r /tmp/tg_install
-
-systemctl status --no-pager storage-warning.timer
-
-systemctl status --no-pager system-warn-tgm.service
-
-systemctl status --no-pager cpu-mem-alert.service
-
-systemctl status --no-pager postfix-report.timer
-
-systemctl status --no-pager csf-lfd-alert.service
