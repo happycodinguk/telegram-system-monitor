@@ -2,7 +2,7 @@ This script will install Telegram Messenger API Notifications for server monitor
 
 Current alerts:
 
-- Postfix Activity Reports
+- Postfix Activity Reports (Dependency for Posfix reports: pflogsumm - https://packages.debian.org/sid/pflogsumm)
 - Low Storage Alerts 
 - System Service Failure Alerts 
 - CPU and Memory Alerts 
