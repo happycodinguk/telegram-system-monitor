@@ -8,7 +8,11 @@ Current alerts:
 - CPU and Memory Alerts 
 - CSF LFD Firewall Alerts
 
-CURRENTLY I HAVE ONLY TESTED THIS ON DEBIAN 10 - Will test others soon.
+INSTALL SCRIPT TESTED ON: 
+DEBIAN 10 
+CENTOS 7 
+
+- Will test others soon.
 
 This project is for all to enjoy. Hoping some people will contribute more notification options, tweak etc!
 If you have a testing platform and 5 minutes (thats how long it takes to install from the script 
@@ -100,6 +104,7 @@ This script will install Telegram Messenger API Notifications:
 - Low Storage Alerts 
 - System Service Failure Alerts 
 - CPU and Memory Alerts
+- CSF LFD Firewall Alerts
 
 During install you will need to input: 
 
@@ -162,8 +167,10 @@ To manually edit key files go to:
     /YOUR_CHOSEN_INSTALL_PATH/system-warning.sh
     
     /YOUR_CHOSEN_INSTALL_PATH/monitor-CPU-Mem.sh 
+    
+    /YOUR_CHOSEN_INSTALL_PATH/csf-lfd-notifications.sh
 
-(DEFAULT location /usr/local/scripts/custom-monitor-tgm)
+DEFAULT location: /usr/local/scripts/custom-monitor-tgm
 
 You can manually edit your emoji codes inside these files to 
 customise your message looks....
