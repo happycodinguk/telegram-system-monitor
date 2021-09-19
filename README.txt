@@ -57,6 +57,8 @@ https://github.com/happycodinguk/telegram-system-monitor/blob/main/postfix-repor
 https://github.com/happycodinguk/telegram-system-monitor/blob/main/storage-warning.sh
 https://github.com/happycodinguk/telegram-system-monitor/blob/main/system-warnings.sh
 https://github.com/happycodinguk/telegram-system-monitor/blob/main/monitor-CPU-Mem.sh
+https://github.com/happycodinguk/telegram-system-monitor/blob/main/csf-lfd-notifications.sh
+
 Then there are the systemd .service and .timer files to run these.
 Your single telegram config file which is for all scripts. You edit this to change to new bot!
 
