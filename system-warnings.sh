@@ -13,7 +13,7 @@
 # Discord: https://discord.gg/uf2h4TdbQ7           #
 ####################################################
 
-source telegram.conf
+source "YOUR_INSTALL_DIR"/telegram.conf
 echo "$token"
 echo "$chat_id"
 
@@ -43,7 +43,7 @@ while true :
 do
         for i in "${SERVICES[@]}"
         do
-          if [[  "$(systemctl show -p ActiveState --value "$i")" =~ "inactive"  ]]
+          if [[  "$(systemctl show -p ActiveState "$i")" =~ "inactive"  ]]
                 then
                 sleep 5
                 service "$i" start
@@ -52,7 +52,7 @@ do
                 echo "$MESSAGE" | telegram_send
                 sleep "YOUR_RESET_TIMING" #stop executing script for?
                  fi
-          if [[  "$(systemctl show -p ActiveState --value "$i")" =~ "failed"  ]]
+          if [[  "$(systemctl show -p ActiveState "$i")" =~ "failed"  ]]
                 then
                 sleep 5
                 service "$i" start
