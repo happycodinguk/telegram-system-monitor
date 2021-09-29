@@ -20,7 +20,6 @@ and get notifications), be good to get more opinions on it!
 
 DM on:
 Telegram: https://t.me/joinchat/xlmtm7jVYR4yODQ0
-Discord: https://discord.gg/uf2h4TdbQ7
 
 Keep your eye on files for updates as new features and improvements are inbound.
 
