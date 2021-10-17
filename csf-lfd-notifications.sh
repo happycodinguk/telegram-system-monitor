@@ -36,7 +36,7 @@ $message"
 tail -fn0 /var/log/lfd.log | 
 while read -r line
 do
-   [[ "$line" != *** ]] && continue
+   [[ "$line" != *"*"* ]] && continue
    echo $line > /tmp/lfd.txt
 
 
