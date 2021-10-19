@@ -1,3 +1,7 @@
+INSTALL SCRIPT TESTED ON: 
+DEBIAN 10 
+CENTOS 7 
+
 This script will install Telegram BOT Notifications.
 Pick one, all, or any combo if these notifications!
 
@@ -8,6 +12,7 @@ Pick one, all, or any combo if these notifications!
 - CPU and Memory Alerts
 - CSF LFD Firewall alerts
 - SSH Login alerts (NOT WORKING ON CENTOS YET)
+  If you have CSF firewall installed this option isnt needed as CSF/LFD gives SSH login alerts and much more!
 -------------------------------
 
 - You will choose an install location for the scripts (default options available).
@@ -20,12 +25,6 @@ Pick one, all, or any combo if these notifications!
   CSF/LFD sends SSH, webmin login notifications along with IP blocking info etc.
 
 >> Always have a backup of your system or try out in a testing environment<<
-
-INSTALL SCRIPT TESTED ON: 
-DEBIAN 10 
-CENTOS 7 
-
-- Will test others soon.
 
 This project is for all to enjoy. Hoping some people will contribute more notification options, tweak etc!
 If you have a testing platform and 5 minutes (thats how long it takes to install from the script 
