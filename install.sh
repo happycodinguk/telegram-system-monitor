@@ -9,17 +9,18 @@
 
 read -p "
 -------------------------------------------------------
-          **TELEGRAM-SERVER-MONITOR**
+          **TELEGRAM-SYSTEM-MONITOR**
 -------------------------------------------------------
 INSTALL SCRIPT TESTED ON: 
 DEBIAN 10 
 CENTOS 7 
 You can view all installation files at: 
 https://github.com/happycodinguk/telegram-system-monitor
-DM to advertise credit for a snippet used or suggest snippet/modification on:
+DM if you'd like a credit for a snippet used or suggest modifications on:
 Telegram: https://t.me/joinchat/xlmtm7jVYR4yODQ0
 
 System Requirements for basic install:
+
 wget 
 Ubuntu/Debian:  apt install -y wget
 CentOS:         yum install -y wget
