@@ -10,13 +10,12 @@
 ####################################################
 # DM me on:                                        #
 # Telegram: https://t.me/joinchat/xlmtm7jVYR4yODQ0 #
-# Discord: https://discord.gg/uf2h4TdbQ7           #
 ####################################################
 
 
 source telegram.conf
-echo "$token"
-echo "$chat_id"
+echo "$token" /dev/null 2&>1
+echo "$chat_id" /dev/null 2&>1
 
 #These are emoji codes 
 # go to https://unicode.org/emoji/charts/full-emoji-list.html
@@ -30,7 +29,9 @@ disk=$'\U1F4BD'
 
 function telegram_send
 {
-curl -s -X POST https://api.telegram.org/bot"$token"/sendMessage -d chat_id="$chat_id" -d text="$policelight Your "YOUR_HD_LOCATION" partition available space is critically low on $(hostname) $(date) $exclamation
+curl -s -X POST https://api.telegram.org/bot"$token"/sendMessage -d chat_id="$chat_id" -d text="$policelight Storage Warning
+
+Your "YOUR_HD_LOCATION" partition available space is critically low on $(hostname) $(date) $exclamation
 
 Used: $CURRENT% $disk"
 }

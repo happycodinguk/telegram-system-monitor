@@ -1,7 +1,7 @@
 read -e -p "
-########################################
+----------------------------------------
 ### CPU and Memory Alert Installer! ####
-########################################
+----------------------------------------
 
 At what percentage would you like a memory alarm?
 
@@ -10,14 +10,17 @@ DEFAULT: 95
 Percentage:" mem_threshold
 : ${mem_threshold:=95}
 echo "
+
 Thank You!
 
 I'll put that in for you: $mem_threshold%"
 
 read -e -p "
-**************************************************************
 
-After receiving alert message for CPU and MEMORY WARNING how long do you want to wait before receiving another memory alarm? 
+-------------------------------------------------------
+
+After receiving alert message for CPU and MEMORY WARNING how long do you want to wait 
+before receiving another memory alarm? 
 
 Enter your amount in seconds.
 
@@ -32,9 +35,9 @@ Thank You!
 
 I've stored: $cpu_reset_timing seconds
 
-#######################################
-#### Service install status below #####
-#######################################"
+----------------------------------------
+#### Installed service status below ####
+----------------------------------------"
 
 
 # Inserts install choices into files!

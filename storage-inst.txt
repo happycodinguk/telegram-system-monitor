@@ -1,8 +1,8 @@
 
 read -e -p "
-########################################
+----------------------------------------
 ##### Low Storage Alert Installer  #####
-########################################
+----------------------------------------
 
 What percentage would you like to receive a LOW DISK Alert?
 DEFAULT 90
@@ -14,7 +14,8 @@ echo "
 Great Choice: $hd_warning_percent%"
 
 read -e -p "
-**************************************************************
+
+-------------------------------------------------------
 
 What volume would you like HD Low alert for? 
 
@@ -34,7 +35,8 @@ Thank You!
 I've stored: $hd_partition"
 
 read -e -p "
-**************************************************************
+
+-------------------------------------------------------
 
 STORAGE WARNING Poll Rate...
 
@@ -52,9 +54,9 @@ Thank You!
 
 I've stored: $hd_poll_timing hour/s
 
-#######################################
-#### Service install status below #####
-#######################################"
+----------------------------------------
+#### Installed service status below ####
+----------------------------------------"
 
 # Inserts choice hd warning storage-warning.sh
 sed -i 's|"YOUR_HD_THRESHOLD"|'"$hd_warning_percent"'|g' storage-warning.sh

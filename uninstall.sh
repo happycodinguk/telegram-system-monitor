@@ -57,18 +57,28 @@ systemctl disable csf-lfd-alert.service
 systemctl daemon-reload
 
 #Remove installed scripts
-rm -rv /$inspath
+rm -frv $inspath
+rm -fr /tmp/tg_install
 
 #systemctl remove services
-rm -rv /etc/systemd/system/storage-warn-tgm.service
-rm -rv /etc/systemd/system/storage-warning.timer
+rm -frv /etc/systemd/system/storage-warn-tgm.service
+rm -frv /etc/systemd/system/storage-warning.timer
 
-rm -rv /etc/systemd/system/system-warn-tgm.service
-rm -rv /etc/systemd/system/cpu-mem-alert.service
+rm -frv /etc/systemd/system/system-warn-tgm.service
 
-rm -rv /etc/systemd/system/postfix-report.service
-rm -rv /etc/systemd/system/postfix-report.timer
+rm -frv /etc/systemd/system/cpu-mem-alert.service
 
-rm -rv /etc/systemd/system/csf-lfd-alert.service
+rm -frv /etc/systemd/system/postfix-report.service
+rm -frv /etc/systemd/system/postfix-report.timer
 
+rm -frv /etc/systemd/system/csf-lfd-alert.service
 
+# Remove SSH Warning link in /etc/pam.d/sshd if it exists
+sed -i '/ssh-login-warning.sh/d' /etc/pam.d/sshd
+
+read -e -p "
+Removed SSH Warning link in /etc/pam.d/sshd if it exists
+
+UNINSTALL COMPLETE"
+
+exit 0

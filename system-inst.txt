@@ -1,17 +1,15 @@
 read -e -p "
-########################################
+----------------------------------------
 ## System Service Failure Installer! ###
-########################################
+----------------------------------------
 
 Which SYSTEMD services do you want to monitor (space separated)? 
 
 If you receive incorrect service failure messages...
-Check your service names are correct and those services are actually installed on your system!
-System service names vary on different OS's
-
+Check your service names are correct and those services are actually installed on your system! System service names vary on different OS's
 You can edit services later in: $inspath/system-warnings.sh 
 
-Samples services below by OS.
+Samples services below by OS:
 
 Debian:
 
@@ -20,7 +18,6 @@ apache2 php7.3-fpm php7.4-fpm php8.0-fpm bind9 postfix dovecot mariadb proftpd s
 CentOS:
 
 httpd named postfix dovecot mariadb proftpd spamassassin sshd
-
 
 Which do you want to monitor?:" services_to_monitor
 
@@ -32,7 +29,8 @@ I've stored: $services_to_monitor
 - This can be altered in the script files in your installation directory"
 
 read -e -p "
-**************************************************************
+
+-------------------------------------------------------
 
 After receiving alert message for SYSTEMD WARNING how long do you want to wait before receiving another systemd alarm? 
 
@@ -49,9 +47,9 @@ Thank You!
 
 I've stored: $sys_reset_timing seconds
 
-#######################################
-#### Service install status below #####
-#######################################"
+----------------------------------------
+#### Installed service status below ####
+----------------------------------------"
 
 # Inserts install choices into files!
 

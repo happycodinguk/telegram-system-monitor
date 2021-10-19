@@ -10,12 +10,11 @@
 ####################################################
 # DM me on:                                        #
 # Telegram: https://t.me/joinchat/xlmtm7jVYR4yODQ0 #
-# Discord: https://discord.gg/uf2h4TdbQ7           #
 ####################################################
 
 source telegram.conf
-echo "$token"
-echo "$chat_id"
+echo "$token" /dev/null 2&>1
+echo "$chat_id" /dev/null 2&>1
 
 postfix_info=/tmp/mailer.txt
 
@@ -31,7 +30,9 @@ cat /var/log/mail.log | /usr/sbin/pflogsumm -d today > /tmp/mailer.txt
 #Telegram API to send notification.
 function telegram_send
 {
-curl -s -F chat_id=$chat_id -F document=@$postfix_info -F caption="$chart POSTFIX $email
+curl -s -F chat_id=$chat_id -F document=@$postfix_info -F caption="$chart Postfix Report
+
+POSTFIX $email
 Report as requested for: 
 $(hostname)" https://api.telegram.org/bot$token/sendDocument > /dev/null 2&>1
 }

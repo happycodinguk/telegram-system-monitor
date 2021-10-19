@@ -10,12 +10,11 @@
 ####################################################
 # DM me on:                                        #
 # Telegram: https://t.me/joinchat/xlmtm7jVYR4yODQ0 #
-# Discord: https://discord.gg/uf2h4TdbQ7           #
 ####################################################
 
 source "YOUR_INSTALL_DIR"/telegram.conf
-echo "$token"
-echo "$chat_id"
+echo "$token" /dev/null 2&>1
+echo "$chat_id" /dev/null 2&>1
 
 #These are emoji codes 
 # go to https://unicode.org/emoji/charts/full-emoji-list.html
@@ -34,7 +33,8 @@ SERVICES=( "SERVICES_TO_MONITOR" )
  
 function telegram_send
 {
-curl -s -X POST https://api.telegram.org/bot"$token"/sendMessage -d chat_id="$chat_id" -d text="$policelight 
+curl -s -X POST https://api.telegram.org/bot"$token"/sendMessage -d chat_id="$chat_id" -d text="$policelight System Service Warning
+
 $SUBJECT 
 $toolbox $MESSAGE"
 }

@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 ######################################################################
 ######## CSF LFD Notifications #######################################
 ######################################################################
@@ -10,24 +10,23 @@
 ####################################################
 # DM me on:                                        #
 # Telegram: https://t.me/joinchat/xlmtm7jVYR4yODQ0 #
-# Discord: https://discord.gg/uf2h4TdbQ7           #
 ####################################################
 
 
 source telegram.conf
-echo "$token"
-echo "$chat_id"
+echo "$token" > /dev/null 2&>1
+echo "$chat_id" > /dev/null 2&>1
 
 #These are emoji codes 
 # go to https://unicode.org/emoji/charts/full-emoji-list.html
 # you will need its "U+1F4EB" code MINUS the + As seen below
-
 padlock=$'\U1F512'
 lookingglass=$'\U1F50D'
 #Telegram API to send notification.
 function telegram_send
 {
 curl -s -X POST https://api.telegram.org/bot"$token"/sendMessage -d chat_id="$chat_id" -d text="$padlock CSF LFD alert $lookingglass 
+
 $(hostname) 
 $message"
 }

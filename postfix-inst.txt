@@ -4,9 +4,9 @@
 # Please leave feedback or message me on telegram https://t.me/joinchat/xlmtm7jVYR4yODQ0
 
 read -p "
-########################################
+----------------------------------------
 ###### Postfix report installer! #######
-########################################
+----------------------------------------
 
 For POSTFIX activity reports 
 >>You must install pflogsumm for this to work<<
@@ -33,7 +33,7 @@ Thank You!
 I've stored: $report_1_time"
 
 read -e -p "
-**************************************************************
+-------------------------------------------------------
 
 POSTFIX Report 2.
 
@@ -47,9 +47,9 @@ Thank You!
 
 I've stored: $report_2_time
 
-#######################################
-#### Service install status below #####
-#######################################"
+----------------------------------------
+#### Installed service status below ####
+----------------------------------------"
 
 
 # This script will install a hard drive monitor that warns of low 

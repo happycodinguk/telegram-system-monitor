@@ -10,12 +10,11 @@
 ####################################################
 # DM me on:                                        #
 # Telegram: https://t.me/joinchat/xlmtm7jVYR4yODQ0 #
-# Discord: https://discord.gg/uf2h4TdbQ7           #
 ####################################################
 
 source telegram.conf
-echo "$token"
-echo "$chat_id"
+echo "$token" > /dev/null 2&>1
+echo "$chat_id" > /dev/null 2&>1
 
 #These are emoji codes 
 # go to https://unicode.org/emoji/charts/full-emoji-list.html

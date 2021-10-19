@@ -1,4 +1,21 @@
 
+
+read -p "
+
+-------------------------------------
+### Install CSF/LFD Notifications ###                      
+-------------------------------------
+No options needed here.
+
+Are you ready?
+
+Yes or No?" -n 1 -r
+echo    # (optional) move to a new line
+if [[ ! $REPLY =~ ^[Yy]$ ]]
+then
+    exit 1
+fi
+
 # Inserts chosen install directory into sytemd service
 sed -i 's|"YOUR_INSTALL_DIR"|'"$inspath"'|g' csf-lfd-alert.service
 

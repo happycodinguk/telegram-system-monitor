@@ -1,0 +1,53 @@
+read -p "
+----------------------------------------
+### SSH Login Notification Installer! ##
+----------------------------------------
+
+After SSH logins, PAM will trigger the script to send a notification.
+
+To do this, we will place the line:
+
+session optional pam_exec.so type=open_session seteuid $inspath/ssh-login-warning.sh
+
+Into: /etc/pam.d/sshd
+
+Dependencies:
+
+JQ must be installed
+
+UBUNTU/DEBIAN:	apt install -y jq
+
+CENTOS:		yum install -y jq
+
+		if not found you will need to install the repository:
+		yum install epel-release -y then yum update -y and retry
+
+GETENT must be installed but is present on many basic OS installs
+
+Are you ready?
+(Type Y or N)" -n 1 -r
+echo    # (optional) move to a new line
+if [[ ! $REPLY =~ ^[Yy]$ ]]
+then
+    exit 1
+fi
+
+#---------------------------------------
+# Actions
+#---------------------------------------
+
+
+# Inserts chosen install directory into ssh-warning script
+sed -i 's|"YOUR_INSTALL_DIR"|'"$inspath"'|g' ssh-login-warning.sh
+
+chmod +x ssh-login-warning.sh 
+mv -i ssh-login-warning.sh $inspath
+
+# Inserts chosen install directory into the pam-link.sh
+sed -i 's|"YOUR_INSTALL_DIR"|'"$inspath"'|g' pam-link.sh
+
+# Script inserts link at the end of the PAM file
+chmod +x pam-link.sh 
+./pam-link.sh
+
+
