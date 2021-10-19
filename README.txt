@@ -32,6 +32,7 @@ and get notifications), be good to get more opinions on it!
 
 DM on:
 Telegram: https://t.me/joinchat/xlmtm7jVYR4yODQ0
+Or discuss here! https://github.com/happycodinguk/telegram-system-monitor/discussions/1
 
 Looking to integrate.
 2FA
