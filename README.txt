@@ -15,6 +15,7 @@ Pick one, all, or any combo if these notifications!
   If you have CSF firewall installed this option isnt needed as CSF/LFD gives SSH login alerts and much more!
 -------------------------------
 
+- You will need to run this script with root privileges using "sudo su" or logging in as root.
 - You will choose an install location for the scripts (default options available).
 - SSH Login alerts will install the script into your chosen location. 
   It will also add a link to trigger the script on SSH login in: 
