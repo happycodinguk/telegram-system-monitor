@@ -16,8 +16,17 @@ DEBIAN 10
 CENTOS 7 
 You can view all installation files at: 
 https://github.com/happycodinguk/telegram-system-monitor
-DM if you'd like a credit for a snippet used or suggest modifications on:
-Telegram: https://t.me/joinchat/xlmtm7jVYR4yODQ0
+
+You will need to run this script with root privileges.
+If logged in a standard user. Before running this script, run the command:
+
+sudo su
+
+You can run the command: 
+
+exit 
+
+After the script has finished to return to your normal user command line.
 
 System Requirements for basic install:
 
