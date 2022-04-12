@@ -5,7 +5,11 @@ read -p "
 -------------------------------------
 ### Install CSF/LFD Notifications ###                      
 -------------------------------------
-No options needed here.
+You will need to enable the relevant notifications in your CSF config file!
+
+ie: LF_SSH_EMAIL_ALERT etc. 
+
+If these aren't enabled, the log file won't have log entries to send via telegram.
 
 Are you ready?
 
