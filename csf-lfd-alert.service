@@ -5,6 +5,7 @@ Description=CSF and LFD warnings telegram
 Type=simple
 WorkingDirectory="YOUR_INSTALL_DIR"
 ExecStart="YOUR_INSTALL_DIR"/csf-lfd-notifications.sh
+RuntimeMaxSec=3600s
 Restart=always
 
 [Install]
