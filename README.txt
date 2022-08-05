@@ -2,15 +2,15 @@ INSTALL SCRIPT TESTED ON:
 DEBIAN 10 
 CENTOS 7 
 
-This script will install Telegram BOT Notifications.
-Pick one, all, or any combo if these notifications!
+This script will install Telegram BOT Notifications for webservers or use on your linux laptop.
+Pick one, all, or any combo of these notifications!
 
 -------------------------------
 - Postfix Activity Reports
 - Low Storage Alerts 
 - System Service Failure Alerts 
 - CPU and Memory Alerts
-- CSF LFD Firewall alerts
+- CSF LFD Firewall alerts (if you have it installed)
 - SSH Login alerts (NOT WORKING ON CENTOS YET)
   If you have CSF firewall installed this option isnt needed as CSF/LFD gives SSH login alerts and much more!
 -------------------------------
@@ -39,7 +39,7 @@ Looking to integrate.
 2FA
 CPU temperature
 
-Please be aware this script is compiled with my knowledge and snippets found across forums/web pages.
+This script is compiled with my knowledge and snippets found across forums/web pages.
 Should have made a note of them really. Thanks for the snippets guys. 
 If you would like a credit on this GIT, drop me a message and I'll add ya!
 Better still join in and lets get some more notifications added... Or clone it and improve! 
@@ -49,7 +49,7 @@ Progress is always good.
 AUTOMATIC INSTALL PROCESS
 ###############################################################################################
 1st. Take a look over the files, always a good process for any third party installs!
-There's five very small scripts.
+There are five very small scripts.
 Then there are the systemd .service and .timer files to run these.
 Your single telegram config file which is for all scripts. You edit this to change to new bot!
 
@@ -60,22 +60,33 @@ complicated as it looks....
 
 The single install.sh script will pull the files it needs during the install process!
 
-----------------------------------------------------------------------------------------------------
-# To install:
-# In terminal:
-# 	wget https://raw.githubusercontent.com/happycodinguk/telegram-system-monitor/main/install.sh
-# 	chmod +x install.sh
-# 	./install.sh 
-----------------------------------------------------------------------------------------------------
-# If you have any issues you can manually create the file:
-# In a terminal window:
-#
-# 	nano install.sh
-#
-# In any web browser: https://raw.githubusercontent.com/happycodinguk/telegram-system-monitor/main/install.sh
-# Copy, then paste the text from page into nano editor!
-# Save.
-# 	chmod +x install.sh
-# 	./install.sh 
+____________________________________________________________________________________________________
+____________________________________________________________________________________________________
+
+AUTOMATIC INSTALL:
+
+In terminal:
+ 
+user@linux:~$ wget https://raw.githubusercontent.com/happycodinguk/telegram-system-monitor/main/install.sh
+user@linux:~$	chmod +x install.sh
+user@linux:~$	./install.sh 
+
+____________________________________________________________________________________________________
+____________________________________________________________________________________________________
+
+If you have any issues you can manually create the file:
+In a terminal window create your own install file:
+
+user@linux:~$	nano install.sh
+
+In any web browser open the raw install script text: 
+https://raw.githubusercontent.com/happycodinguk/telegram-system-monitor/main/install.sh
+
+Copy, then paste the text from page into nano editor!
+
+Save.
+
+user@linux:~$ chmod +x install.sh
+user@linux:~$	./install.sh 
 ----------------------------------------------------------------------------------------------------
 
